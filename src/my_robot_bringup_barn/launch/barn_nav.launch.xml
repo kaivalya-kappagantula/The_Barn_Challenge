@@ -1,0 +1,13 @@
+<launch>
+  <node pkg="tf2_ros" exec="static_transform_publisher" name="map_to_odom"
+        args="0 0 0 0 0 0 map odom">
+    <remap from="/tf" to="/j100_0000/tf" />
+    <remap from="/tf_static" to="/j100_0000/tf_static" />
+  </node>
+
+  <include file="$(find-pkg-share nav2_bringup)/launch/navigation_launch.py">
+    <arg name="use_sim_time" value="true" />
+    <arg name="params_file" value="/home/bhoutik-agrawal/barn_ws/src/my_robot_bringup_barn/config/barn_nav2_params.yaml" />
+    <arg name="namespace" value="j100_0000" />
+  </include>
+</launch>
